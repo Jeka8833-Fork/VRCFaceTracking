@@ -7,4 +7,5 @@ public interface IModuleController
     public ILoggerFactory GetLoggerFactory();
     public IModuleManager GetModuleManager();
     public IModuleUi GetUi();
+    public IModuleParameterManager GetParameterManager();
 }

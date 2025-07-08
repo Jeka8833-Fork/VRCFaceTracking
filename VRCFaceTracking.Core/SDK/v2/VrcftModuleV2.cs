@@ -2,7 +2,7 @@
 
 namespace VRCFaceTracking.Core.SDK.v2;
 
-public abstract class VrcftModuleV2
+public abstract class VrcftModuleV2 : IEquatable<VrcftModuleV2>
 {
     public readonly IModuleController Module;
 
@@ -13,6 +13,11 @@ public abstract class VrcftModuleV2
     protected VrcftModuleV2(IModuleController controller)
     {
         Module = controller;
+    }
+
+    public abstract Guid GetModuleId
+    {
+        get;
     }
 
     /// <summary>
@@ -33,4 +38,41 @@ public abstract class VrcftModuleV2
     /// Any exceptions thrown will be ignored.<br />
     /// </summary>
     public abstract void Shutdown();
+
+    public bool Equals(VrcftModuleV2 other)
+    {
+        if (other is null)
+        {
+            return false;
+        }
+
+        if (ReferenceEquals(this, other))
+        {
+            return true;
+        }
+
+        return GetModuleId.Equals(other.GetModuleId);
+    }
+
+    public override bool Equals(object obj)
+    {
+        if (obj is null)
+        {
+            return false;
+        }
+
+        if (ReferenceEquals(this, obj))
+        {
+            return true;
+        }
+
+        if (obj.GetType() != GetType())
+        {
+            return false;
+        }
+
+        return Equals((VrcftModuleV2)obj);
+    }
+
+    public override int GetHashCode() => GetModuleId.GetHashCode();
 }
