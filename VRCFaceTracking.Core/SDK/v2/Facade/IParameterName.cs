@@ -1,4 +1,4 @@
-﻿namespace VRCFaceTracking.Core.SDK.v2;
+﻿namespace VRCFaceTracking.Core.SDK.v2.Facade;
 
 public interface IParameterName
 {

@@ -2,7 +2,7 @@
 
 public interface IModuleManager
 {
-    public void SubscribeToModuleListChanged(Action<IList<VrcftModuleV2>> onModuleListChanged); // TODO: Review this
+    public void SubscribeToModuleListChanged(Action<IList<VrcftModuleV2>> onModuleListChanged);
 
     public bool IsStarted();
     public bool TrySetStart(bool start);
@@ -12,6 +12,4 @@ public interface IModuleManager
 
     public int GetPriority();
     public int SetPriority(int priority);
-
-    public void Unload();
 }
