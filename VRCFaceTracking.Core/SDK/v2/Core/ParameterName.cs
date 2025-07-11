@@ -1,6 +1,4 @@
 ﻿#nullable enable
-using VRCFaceTracking.Core.SDK.v2.Facade;
-
 namespace VRCFaceTracking.Core.SDK.v2.Core;
 
 public class ParameterName<T>(string name) : IParameterName, IEquatable<ParameterName<T>>

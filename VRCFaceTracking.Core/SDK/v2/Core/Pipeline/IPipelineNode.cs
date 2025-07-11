@@ -1,6 +1,4 @@
-﻿using VRCFaceTracking.Core.SDK.v2.Core;
-
-namespace VRCFaceTracking.Core.SDK.v2.Facade;
+﻿namespace VRCFaceTracking.Core.SDK.v2.Core.Pipeline;
 
 public interface IPipelineNode : IComparable<IPipelineNode>
 {
@@ -10,6 +8,8 @@ public interface IPipelineNode : IComparable<IPipelineNode>
 
     int IComparable<IPipelineNode>.CompareTo(IPipelineNode other)
     {
+        if (other == null) throw new ArgumentNullException(nameof(other));
+
         return Priority().CompareTo(other.Priority());
     }
 }

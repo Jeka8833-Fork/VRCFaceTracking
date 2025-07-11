@@ -1,8 +1,8 @@
 ﻿using VRCFaceTracking.Core.SDK.v2.Util;
 
-namespace VRCFaceTracking.Core.SDK.v2.Core;
+namespace VRCFaceTracking.Core.SDK.v2.Core.Pipeline;
 
-public record PacketHeader(Guid ModuleId, IReadOnlyWarpedMutableTime ExpireTime, IReadOnlyWarpedMutableTime Timestamp)
+public record PacketHeader(Guid ModuleId, IReadOnlyMutableTime ExpireTime, IReadOnlyMutableTime Timestamp)
 {
     public PacketHeaderBuilder Modify()
     {
@@ -15,8 +15,8 @@ public record PacketHeader(Guid ModuleId, IReadOnlyWarpedMutableTime ExpireTime,
     public class PacketHeaderBuilder
     {
         private Guid _moduleId;
-        private IReadOnlyWarpedMutableTime _expireTime;
-        private IReadOnlyWarpedMutableTime _timestamp;
+        private IReadOnlyMutableTime _expireTime;
+        private IReadOnlyMutableTime _timestamp;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PacketHeaderBuilder"/> class.
@@ -40,7 +40,7 @@ public record PacketHeader(Guid ModuleId, IReadOnlyWarpedMutableTime ExpireTime,
         /// </summary>
         /// <param name="moduleId">The unique identifier of the module.</param>
         /// <returns>The current builder instance for fluent chaining.</returns>
-        public PacketHeaderBuilder WithModuleId(Guid moduleId)
+        public PacketHeaderBuilder SetModuleId(Guid moduleId)
         {
             _moduleId = moduleId;
             return this;
@@ -51,7 +51,7 @@ public record PacketHeader(Guid ModuleId, IReadOnlyWarpedMutableTime ExpireTime,
         /// </summary>
         /// <returns>The current builder instance for fluent chaining.</returns>
         /// <exception cref="ArgumentNullException">Thrown if expireTime is null.</exception>
-        public PacketHeaderBuilder WithExpireTime(IReadOnlyWarpedMutableTime expireTime)
+        public PacketHeaderBuilder SetExpireTime(IReadOnlyMutableTime expireTime)
         {
             _expireTime = expireTime ?? throw new ArgumentNullException(nameof(expireTime));
             return this;
@@ -62,7 +62,7 @@ public record PacketHeader(Guid ModuleId, IReadOnlyWarpedMutableTime ExpireTime,
         /// </summary>
         /// <returns>The current builder instance for fluent chaining.</returns>
         /// <exception cref="ArgumentNullException">Thrown if timestamp is null.</exception>
-        public PacketHeaderBuilder WithTimestamp(IReadOnlyWarpedMutableTime timestamp)
+        public PacketHeaderBuilder SetTimestamp(IReadOnlyMutableTime timestamp)
         {
             _timestamp = timestamp ?? throw new ArgumentNullException(nameof(timestamp));
             return this;
